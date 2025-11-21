@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<definitions name="UserService" targetNamespace="urn:UserService" xmlns:tns="urn:UserService" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:types>
+<xsd:schema targetNamespace="urn:UserService">
+<xsd:element name="get_user_details"><xsd:complexType><xsd:sequence><xsd:element name="user_id" type="xsd:int"/></xsd:sequence></xsd:complexType></xsd:element>
+<xsd:element name="get_user_detailsResponse"><xsd:complexType><xsd:sequence><xsd:element name="result" type="xsd:string"/></xsd:sequence></xsd:complexType></xsd:element>
+
+
+<xsd:element name="update_user_details"><xsd:complexType><xsd:sequence><xsd:element name="user_id" type="xsd:int"/><xsd:element name="new_name" type="xsd:string"/></xsd:sequence></xsd:complexType></xsd:element>
+<xsd:element name="update_user_detailsResponse"><xsd:complexType><xsd:sequence><xsd:element name="result" type="xsd:string"/></xsd:sequence></xsd:complexType></xsd:element>
+
+
+<xsd:element name="delete_user"><xsd:complexType><xsd:sequence><xsd:element name="user_id" type="xsd:int"/></xsd:sequence></xsd:complexType></xsd:element>
+<xsd:element name="delete_userResponse"><xsd:complexType><xsd:sequence><xsd:element name="result" type="xsd:string"/></xsd:sequence></xsd:complexType></xsd:element>
+</xsd:schema>
+</wsdl:types>
+
+
+<wsdl:message name="get_user_detailsRequest"><wsdl:part name="parameters" element="tns:get_user_details"/></wsdl:message>
+<wsdl:message name="get_user_detailsResponse"><wsdl:part name="parameters" element="tns:get_user_detailsResponse"/></wsdl:message>
+
+
+<wsdl:message name="update_user_detailsRequest"><wsdl:part name="parameters" element="tns:update_user_details"/></wsdl:message>
+<wsdl:message name="update_user_detailsResponse"><wsdl:part name="parameters" element="tns:update_user_detailsResponse"/></wsdl:message>
+
+
+<wsdl:message name="delete_userRequest"><wsdl:part name="parameters" element="tns:delete_user"/></wsdl:message>
+<wsdl:message name="delete_userResponse"><wsdl:part name="parameters" element="tns:delete_userResponse"/></wsdl:message>
+
+
+<wsdl:portType name="UserServicePortType">
+<wsdl:operation name="get_user_details"><wsdl:input message="tns:get_user_detailsRequest"/><wsdl:output message="tns:get_user_detailsResponse"/></wsdl:operation>
+<wsdl:operation name="update_user_details"><wsdl:input message="tns:update_user_detailsRequest"/><wsdl:output message="tns:update_user_detailsResponse"/></wsdl:operation>
+<wsdl:operation name="delete_user"><wsdl:input message="tns:delete_userRequest"/><wsdl:output message="tns:delete_userResponse"/></wsdl:operation>
+</wsdl:portType>
+
+
+<wsdl:binding name="UserServiceBinding" type="tns:UserServicePortType">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="get_user_details"><soap:operation soapAction="get_user_details"/><wsdl:input><soap:body use="literal"/></wsdl:input><wsdl:output><soap:body use="literal"/></wsdl:output></wsdl:operation>
+<wsdl:operation name="update_user_details"><soap:operation soapAction="update_user_details"/><wsdl:input><soap:body use="literal"/></wsdl:input><wsdl:output><soap:body use="literal"/></wsdl:output></wsdl:operation>
+<wsdl:operation name="delete_user"><soap:operation soapAction="delete_user"/><wsdl:input><soap:body use="literal"/></wsdl:input><wsdl:output><soap:body use="literal"/></wsdl:output></wsdl:operation>
+</wsdl:binding>
+
+
+<wsdl:service name="UserService">
+<wsdl:port name="UserServicePort" binding="tns:UserServiceBinding">
+<soap:address location="http://localhost:8000/soap"/>
+</wsdl:port>
+</wsdl:service>
+</definitions>
